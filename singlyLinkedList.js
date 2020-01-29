@@ -121,7 +121,6 @@ SinglyLinkedList.prototype.reverse = function() {
     prev = cur; // set prev to cur
     cur = next; // set cur to stored value of cur.next
   }
-  console.log(this.head);
   return this.head;
 };
 
