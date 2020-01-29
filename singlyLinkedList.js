@@ -3,9 +3,9 @@ function Node(value, next = null) {
   this.next = next;
 }
 
-function SinglyLinkedList() {
-  this.head = null;
-  this.tail = null;
+function SinglyLinkedList(head = null, tail = null) {
+  this.head = head;
+  this.tail = tail;
 }
 
 SinglyLinkedList.prototype.getLength = function() {
