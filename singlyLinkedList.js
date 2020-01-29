@@ -3,12 +3,16 @@ function Node(value, next = null) {
   this.next = next;
 }
 
-function SinglyLinkedList(head = null, tail = null) {
-  this.head = head;
-  this.tail = tail;
+function SinglyLinkedList() {
+  this.head = null;
+  this.tail = null;
 }
 
-SinglyLinkedList.prototype.getLength = () => {
+SinglyLinkedList.prototype.getHead = function() {
+  return this.head;
+}
+
+SinglyLinkedList.prototype.getLength = function() {
   let cur = this.head;
   let length = 0;
 
@@ -20,7 +24,7 @@ SinglyLinkedList.prototype.getLength = () => {
     return ++length;
   } else {
     // increment length for each node
-    while (cur.next) {
+    while (cur !== null) {
       length++;
       cur = cur.next;
     }
@@ -91,23 +95,76 @@ SinglyLinkedList.prototype.removeNode = (index) => {
 };
 
 SinglyLinkedList.prototype.contains = (value) => {
-  cur = this.head;
+  let cur = this.head;
 
-  while (cur.next) {
+  while (cur !== null) {
     if (cur.value === value) {
       return true;
     }
+    cur = cur.next;
   }
   return false;
+};
+
+SinglyLinkedList.prototype.reverse = () => {
+  let prev = null;
+  let cur = this.head; // set current to head of list
+  let next = null;
+  this.tail = this.head;
+
+  /* This loop essentially swaps the pointers around so that
+   * the cur.next is pointing to the previous node.
+   * This is done through a simple swap pattern by storing the value
+   * of cur.next, moving the pointer to the previous node
+   * and incrementing the curent node to the stored next node
+   * */
+  while (cur) {
+    this.head = cur;
+    next = cur.next; // store cur.next in next
+    cur.next = prev; // set cur.next to previous value (initialized to null)
+    prev = cur; // set prev to cur
+    cur = next; // set cur to stored value of cur.next
+  }
+  console.log(this.head);
+  return this.head;
 };
 
 SinglyLinkedList.prototype.printList = () => {
   let str = '';
   let cur = this.head;
-  while (cur.next) {
-    str += ', ' + cur.value;
+
+  if (!this.head) {
+    console.log('[]');
+    return;
+  }
+  while (cur !== null) {
+    if (cur === this.head) {
+      str += cur.value;
+    } else {
+      str += ', ' + cur.value;
+    }
+    cur = cur.next;
   }
   console.log(str);
-}
+};
 
-linkedList = new SinglyLinkedList()
+const linkedList = new SinglyLinkedList();
+console.log(linkedList);
+console.log(linkedList.getLength());
+//module.exports = linkedList;
+
+linkedList.printList();
+linkedList.addToTail(1);
+linkedList.addToTail(2);
+linkedList.addToTail(3);
+linkedList.addToTail(4);
+linkedList.addToTail(5);
+console.log(linkedList.contains(4));
+console.log(linkedList.contains(6));
+console.log(linkedList.getLength());
+
+linkedList.printList();
+linkedList.reverse();
+console.log(linkedList.getHead());
+linkedList.printList();
+//TODO TIME TO WRITE SOME TESTS, YUHBIIIISSHHHH!!!!
