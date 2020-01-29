@@ -6,14 +6,14 @@ class Node {
 }
 
 class SinglyLinkedList {
-  constructor() {
-    this.head = null;
-    this.tail = null;
+  constructor(head = null, tail = null) {
+    this.head = head;
+    this.tail = tail;
   }
 
   addToTail(value) {
     const newNode = new Node(value);
-    const cur = this.head;
+    let cur = this.head;
 
     if (!this.head) {
       this.head = newNode;
