@@ -8,10 +8,6 @@ function SinglyLinkedList() {
   this.tail = null;
 }
 
-SinglyLinkedList.prototype.getHead = function() {
-  return this.head;
-}
-
 SinglyLinkedList.prototype.getLength = function() {
   let cur = this.head;
   let length = 0;
@@ -33,7 +29,7 @@ SinglyLinkedList.prototype.getLength = function() {
   }
 };
 
-SinglyLinkedList.prototype.addToTail = (value) => {
+SinglyLinkedList.prototype.addToTail = function(value) {
   const newNode = new Node(value);
 
   if (!this.head) {
@@ -55,7 +51,7 @@ SinglyLinkedList.prototype.addToTail = (value) => {
   }
 };
 
-SinglyLinkedList.prototype.insertNode = (value, index) => {
+SinglyLinkedList.prototype.insertNode = function(value, index) {
   if (index > this.getLength()) {
     this.addToTail(value);
     return this.head;
@@ -79,7 +75,7 @@ SinglyLinkedList.prototype.insertNode = (value, index) => {
   }
 };
 
-SinglyLinkedList.prototype.removeNode = (index) => {
+SinglyLinkedList.prototype.removeNode = function(index) {
   let cur = this.head;
 
   if (index === 0) {
@@ -94,7 +90,7 @@ SinglyLinkedList.prototype.removeNode = (index) => {
   }
 };
 
-SinglyLinkedList.prototype.contains = (value) => {
+SinglyLinkedList.prototype.contains = function(value) {
   let cur = this.head;
 
   while (cur !== null) {
@@ -106,7 +102,7 @@ SinglyLinkedList.prototype.contains = (value) => {
   return false;
 };
 
-SinglyLinkedList.prototype.reverse = () => {
+SinglyLinkedList.prototype.reverse = function() {
   let prev = null;
   let cur = this.head; // set current to head of list
   let next = null;
@@ -129,7 +125,7 @@ SinglyLinkedList.prototype.reverse = () => {
   return this.head;
 };
 
-SinglyLinkedList.prototype.printList = () => {
+SinglyLinkedList.prototype.printList = function() {
   let str = '';
   let cur = this.head;
 
@@ -155,6 +151,7 @@ console.log(linkedList.getLength());
 
 linkedList.printList();
 linkedList.addToTail(1);
+console.log(linkedList.head);
 linkedList.addToTail(2);
 linkedList.addToTail(3);
 linkedList.addToTail(4);
@@ -165,6 +162,6 @@ console.log(linkedList.getLength());
 
 linkedList.printList();
 linkedList.reverse();
-console.log(linkedList.getHead());
+console.log(linkedList.head);
 linkedList.printList();
 //TODO TIME TO WRITE SOME TESTS, YUHBIIIISSHHHH!!!!
