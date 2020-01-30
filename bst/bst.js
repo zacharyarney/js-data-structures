@@ -26,20 +26,17 @@ class BinarySearchTree {
   }
 
   contains(target) {
-    console.log(this.value);
     if (this.value === target) {
       return true;
     }
     if (this.value > target) {
       if (this.left) {
-        console.log('going left');
         // don't forget to return recursive call when function returns
         return this.left.contains(target);
       }
     }
     if (this.value < target) {
       if (this.right) {
-        console.log('going right');
         return this.right.contains(target);
       }
     }
