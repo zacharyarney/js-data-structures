@@ -31,6 +31,23 @@ class SinglyLinkedList {
     return this.head;
   }
 
+  reverseList() {
+    let prev = null;
+    let cur = this.head;
+    let next = null;
+
+    this.tail = this.head;
+
+    while (cur) {
+      this.head = cur;
+      next = cur.next; // store cur.next
+      cur.next = prev;
+      prev = cur;
+      cur = next;
+    }
+    return this.head;
+  }
+
   printList() {
     let cur = this.head;
     let str = '';
