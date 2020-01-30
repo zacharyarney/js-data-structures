@@ -32,7 +32,23 @@ class SinglyLinkedList {
   }
 
   printList() {
-    console.log(this.head.value);
+    let cur = this.head;
+    let str = '';
+
+    if (!this.head) {
+      str = 'List is empty!';
+    }
+
+    while (cur) {
+      if (cur === this.head) {
+        str += cur.value;
+      } else {
+        str += `, ${cur.value}`;
+      }
+      cur = cur.next;
+    }
+    console.log(str);
+    return str;
   }
 }
 
