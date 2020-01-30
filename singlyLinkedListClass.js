@@ -71,4 +71,10 @@ class SinglyLinkedList {
 
 const list = new SinglyLinkedList();
 list.addToTail(1);
+list.addToTail(2);
+list.addToTail(3);
+list.addToTail(4);
+list.addToTail(5);
+list.printList();
+list.reverseList();
 list.printList();
