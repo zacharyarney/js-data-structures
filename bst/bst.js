@@ -6,7 +6,7 @@ class BinarySearchTree {
   }
 
   insert(value) {
-    newNode = new BinarySearchTree(value);
+    const newNode = new BinarySearchTree(value);
 
     if (this.value > value) {
       if (this.left) {
@@ -26,25 +26,33 @@ class BinarySearchTree {
   }
 
   contains(target) {
-    if (this.target === target) {
+    console.log(this.value);
+    if (this.value === target) {
       return true;
-    } else if (this.target > target) {
+    }
+    if (this.value > target) {
       if (this.left) {
-        this.left.contains(target);
+        console.log('going left');
+        // don't forget to return recursive call when function returns
+        return this.left.contains(target);
       }
-    } else if (this.target < target) {
+    }
+    if (this.value < target) {
       if (this.right) {
-        this.right.contains(target);
+        console.log('going right');
+        return this.right.contains(target);
       }
     }
     return false;
   }
 
   getMax() {
-    while(this.right) {
-      this = this.right;
+    let cur = this;
+    while (cur.right) {
+      cur = cur.right;
     }
-    return this.value;
+    return cur.value;
   }
 }
 
+module.exports = BinarySearchTree;
