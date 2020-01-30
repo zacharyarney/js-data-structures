@@ -24,4 +24,19 @@ class BinarySearchTree {
       }
     }
   }
+
+  contains(value) {
+    if (self.value === value) {
+      return true;
+    } else if (self.value > value) {
+      if (self.left) {
+        self.left.contains(value);
+      }
+    } else if (self.value < value) {
+      if (self.right) {
+        self.right.contains(value);
+      }
+    }
+    return false;
+  }
 }
