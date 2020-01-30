@@ -8,35 +8,43 @@ class BinarySearchTree {
   insert(value) {
     newNode = new BinarySearchTree(value);
 
-    if (self.value > value) {
-      if (self.left) {
-        self.left.insert(value);
+    if (this.value > value) {
+      if (this.left) {
+        this.left.insert(value);
       } else {
-        self.left = newNode;
+        this.left = newNode;
       }
     }
 
-    if (self.value < value) {
-      if (self.right) {
-        self.right.insert(value);
+    if (this.value < value) {
+      if (this.right) {
+        this.right.insert(value);
       } else {
-        self.right = newNode;
+        this.right = newNode;
       }
     }
   }
 
-  contains(value) {
-    if (self.value === value) {
+  contains(target) {
+    if (this.target === target) {
       return true;
-    } else if (self.value > value) {
-      if (self.left) {
-        self.left.contains(value);
+    } else if (this.target > target) {
+      if (this.left) {
+        this.left.contains(target);
       }
-    } else if (self.value < value) {
-      if (self.right) {
-        self.right.contains(value);
+    } else if (this.target < target) {
+      if (this.right) {
+        this.right.contains(target);
       }
     }
     return false;
   }
+
+  getMax() {
+    while(this.right) {
+      this = this.right;
+    }
+    return this.value;
+  }
 }
+
