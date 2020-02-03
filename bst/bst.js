@@ -29,16 +29,14 @@ class BinarySearchTree {
     if (this.value === target) {
       return true;
     }
-    if (this.value > target) {
-      if (this.left) {
-        // don't forget to return recursive call when function returns
-        return this.left.contains(target);
-      }
+    
+    if (this.value > target && this.left) {
+      // don't forget to return recursive call when function returns
+      return this.left.contains(target);
     }
-    if (this.value < target) {
-      if (this.right) {
+
+    if (this.value < target && this.right) {
         return this.right.contains(target);
-      }
     }
     return false;
   }
