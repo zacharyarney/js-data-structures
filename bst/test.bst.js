@@ -1,9 +1,10 @@
 const assert = require('assert');
-const BinarySearchTree = require('./bst');
+const { Node, BinarySearchTree } = require('./bst');
 
-const bst = new BinarySearchTree(5);
+const bst = new BinarySearchTree(new Node(5));
 
 bst.insert(2);
+console.log(bst.root.left);
 bst.insert(3);
 bst.insert(7);
 bst.insert(6);
@@ -13,8 +14,8 @@ bst.insert(21);
 bst.insert(29);
 bst.insert(11);
 
-assert.strictEqual(bst.left.right.value, 3);
-assert.strictEqual(bst.right.left.value, 6);
+assert.strictEqual(bst.root.left.right.value, 3);
+assert.strictEqual(bst.root.right.left.value, 6);
 
 assert(bst.contains(6));
 assert(bst.contains(2));

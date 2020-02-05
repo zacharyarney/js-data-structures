@@ -1,40 +1,52 @@
-class BinarySearchTree {
+class Node {
   constructor(value, left = null, right = null) {
     this.value = value;
     this.left = left;
     this.right = right;
   }
+}
+class BinarySearchTree {
+  constructor(root = null) {
+    this.root = root;
+  }
 
-  insert(value) {
-    const newNode = new BinarySearchTree(value);
+  insert(root = this.root, value) {
+    console.log('cur: ', cur);
+    const newNode = new Node(value);
 
-    if (this.value > value) {
-      if (this.left) {
-        this.left.insert(value);
+    // this will require two methods. 
+    // or maybe I could run a check for current node === this.head
+    
+    if (root === null) {
+      this.root = newNode;
+    } else if (cur.value > value) {
+      if (cur.left) {
+        this.insert(value);
       } else {
-        this.left = newNode;
+        cur.left = newNode;
       }
-    } else if (this.value < value) {
-      if (this.right) {
-        this.right.insert(value);
+    } else if (cur.value < value) {
+      if (cur.right) {
+        cur.right.insert(value);
       } else {
-        this.right = newNode;
+        cur.right = newNode;
       }
     }
   }
 
   find(target) {
-    if (this.value === target) {
-      return this;
+    const cur = this.root;
+    if (cur.value === target) {
+      return cur;
     }
 
-    if (this.value > target && this.left) {
+    if (cur.value > target && cur.left) {
       // don't forget to return recursive call when function returns
-      return this.left.find(target);
+      return cur.left.find(target);
     }
 
-    if (this.value < target && this.right) {
-      return this.right.find(target);
+    if (cur.value < target && cur.right) {
+      return cur.right.find(target);
     }
     return null;
   }
@@ -108,7 +120,7 @@ class BinarySearchTree {
   }
 
   getMax() {
-    let cur = this;
+    let cur = this.root;
     while (cur.right) {
       cur = cur.right;
     }
@@ -116,7 +128,7 @@ class BinarySearchTree {
   }
 
   getMin() {
-    let cur = this;
+    let cur = this.root;
     while (cur.left) {
       cur = cur.left;
     }
@@ -124,4 +136,4 @@ class BinarySearchTree {
   }
 }
 
-module.exports = BinarySearchTree;
+module.exports = { Node, BinarySearchTree };
